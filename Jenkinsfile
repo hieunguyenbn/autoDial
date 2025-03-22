@@ -7,18 +7,7 @@ pipeline {
                 script {
                     echo "Branch: ${env.GIT_BRANCH}"
                     echo "Commit ID: ${env.GIT_COMMIT}"
-                    echo "Commit ID: ${env.GIT_PREVIOUS_SUCCESSFUL_COMMIT}"
-                }
-            }
-        }
-        stage('Save Commit and Branch Info') {
-            steps {
-                script {
-                    sh """
-                        echo "COMMIT_ID=${env.GIT_COMMIT}" > git_info.txt
-                        echo "BRANCH=${env.GIT_BRANCH ?: env.BRANCH_NAME}" >> git_info.txt
-                    """
-                    archiveArtifacts artifacts: 'git_info.txt', fingerprint: true
+                    echo "Previous Commit ID: ${env.GIT_PREVIOUS_SUCCESSFUL_COMMIT}"
                 }
             }
         }
