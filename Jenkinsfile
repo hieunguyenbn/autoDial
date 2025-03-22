@@ -14,7 +14,7 @@ pipeline {
         stage('Compare Current and Previous Builds') {
             steps {
                 script {
-                    if ("${env.GIT_COMMIT}" == " ${env.GIT_PREVIOUS_SUCCESSFUL_COMMIT}") {
+                    if ("${env.GIT_COMMIT}" == "${env.GIT_PREVIOUS_SUCCESSFUL_COMMIT}") {
                         echo "Already build!!"
                     } else {
                         echo "Different! Start build a new one!"
