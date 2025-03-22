@@ -5,7 +5,7 @@ pipeline {
         stage('Get Previous Build Info') {
             steps {
                 script {
-                    def previousBuild = currentBuild.previousBuild
+                    def previousBuild = currentBuild.getPreviousBuild().result
                     if (previousBuild != null) {
                         def prevFile = previousBuild.rawBuild.getArtifacts().find { it.fileName == 'git_info.txt' }
                         if (prevFile) {
