@@ -7,7 +7,7 @@ pipeline {
                 script {
                     echo "Branch: ${env.GIT_BRANCH}"
                     echo "Commit ID: ${env.GIT_COMMIT}"
-                    echo "Previous Commit ID: ${env.GIT_PREVIOUS_SUCCESSFUL_COMMIT}"
+                    echo "Previous success Commit ID: ${env.GIT_PREVIOUS_SUCCESSFUL_COMMIT}"
                 }
             }
         }
