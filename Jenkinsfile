@@ -7,9 +7,9 @@ pipeline {
                 script {
                     def previousBuild = currentBuild.getPreviousBuild().result
                     if (previousBuild != null) {
-                        def prevFile = previousBuild.rawBuild.getArtifacts().find { it.fileName == 'git_info.txt' }
+                        def prevFile = previousBuild.getArtifacts().find { it.fileName == 'git_info.txt' }
                         if (prevFile) {
-                            def prevInfo = previousBuild.rawBuild.getArtifactManager().root().child(prevFile.relativePath).open().text
+                            def prevInfo = previousBuild.getArtifactManager().root().child(prevFile.relativePath).open().text
                             def prevCommit = prevInfo.findAll(/(?<=COMMIT_ID=).*/)[0].trim()
                             def prevBranch = prevInfo.findAll(/(?<=BRANCH=).*/)[0].trim()
 
