@@ -34,5 +34,12 @@ pipeline {
                 }
             }
         }
-     }
+        stage('FINISH') {
+            steps {
+                script {
+                    echo "DONE THE BUILD PROCESS"
+                }
+            }
+        }
+    }
 }
