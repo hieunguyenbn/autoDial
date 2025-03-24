@@ -1,4 +1,4 @@
-
+boolean is_new_commits = false
 pipeline {
     agent any 
     parameters {
@@ -19,8 +19,10 @@ pipeline {
                 script {
                     if ("${env.GIT_COMMIT}" == "${env.GIT_PREVIOUS_SUCCESSFUL_COMMIT}") {
                         echo "Already build!!"
+                        is_new_commits = false
                     } else {
                         echo "Different! Start build a new one!"
+                        is_new_commits = true
                     }
                 }
             }
@@ -29,7 +31,11 @@ pipeline {
             when { expression { params.skip != true } }
             steps {
                 script {
-                    echo "DONE TEST"
+                    if (is_new_commits == true) {
+                        echo "BUILD A NEW COMMIT"
+                    } else {
+                        echo "DONE TEST"
+                    }
                 }
             }
         }
