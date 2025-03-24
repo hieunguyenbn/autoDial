@@ -28,7 +28,11 @@ pipeline {
         }
         stage('Deliver') {
             when { expression { params.skip != true } }
-            echo "DONE TEST"
+            steps {
+                script {
+                    echo "DONE TEST"
+                }
+            }
         }
      }
 }
