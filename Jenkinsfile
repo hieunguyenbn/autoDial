@@ -28,15 +28,7 @@ pipeline {
         }
         stage('Deliver') {
             when { expression { params.skip != true } }
-            steps {
-                sh "tar -czf prplos_${working_branch}_${env.GIT_COMMIT}.tar.gz ./bin/targets/intel_x86/lgm"
-                emailext (
-                    attachLog: true,
-                    attachmentsPattern: '*.tar.gz',
-                    body: '$DEFAULT_CONTENT',
-                    subject: '$DEFAULT_SUBJECT', 
-                    to: '$DEFAULT_RECIPIENTS')
-            }
+            echo "DONE TEST"
         }
      }
 }
